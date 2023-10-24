@@ -73,7 +73,8 @@ Add the following to your solution to make it more robust:
 
 #### `hired_employees.csv`:
 
-| --------------------------------------------------------------------------- |
+|                                                                                 |
+| ------------------------------------------------------------------------------- |
 | **id** INTEGER ID of the employee                                               |
 | **name** STRING Name and surname of the employee                                |
 | **datetime** STRING Hire datetime ISO format                                    |
@@ -86,6 +87,7 @@ Add the following to your solution to make it more robust:
 
 #### `departments.csv`:
 
+|                                              |
 | -------------------------------------------- |
 | **id** INTEGER If of the department          |
 | **department** STRING Name of the department |
@@ -97,6 +99,7 @@ Add the following to your solution to make it more robust:
 
 #### `jobs.csv`:
 
+|                                |
 | ------------------------------ |
 | **id** INTEGER Id of the job   |
 | **job** STRING Name of the job |
