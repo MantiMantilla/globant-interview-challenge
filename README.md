@@ -82,7 +82,9 @@ Add the following to your solution to make it more robust:
 | **job_id** INTEGER Id of the job which the employee was hired for               |
 
 4535,Marcelo Gonzalez,2021-07-27T16:02:08Z,1,2
+
 4572,Lidia Mendez,2021-07-27T19:04:09Z,1,2
+
 *File hired_employees.csv should be attached by recruiter*
 
 #### `departments.csv`:
@@ -93,8 +95,11 @@ Add the following to your solution to make it more robust:
 | **department** STRING Name of the department |
 
 1, Supply Chain
+
 2, Maintenance
+
 3, Staff
+
 *File departments.csv should be attached by recruiter*
 
 #### `jobs.csv`:
@@ -105,6 +110,9 @@ Add the following to your solution to make it more robust:
 | **job** STRING Name of the job |
 
 1, Recruiter
+
 2, Manager
+
 3, Analyst
+
 *File jobs.csv should be attached by recruiter*
