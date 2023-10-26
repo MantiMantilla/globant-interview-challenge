@@ -42,11 +42,11 @@ jobs:
         with:
           environment-file: ./docs/requirements.yml
           environment-name: JBookEnv
-          cache-env: true
+          cache-environment: true
 
-      # Build the book, requires bash to initialize autorun scripts for mamba, hence bash -l {0}
+      # Build the book, requires bash to initialize autorun scripts for mamba, hence bash -el {0}
       - name: Build the book
-        shell: bash -l {0}
+        shell: bash -el {0}
         run: |
           jupyter-book build --all ./docs/book_contents
       - name: Setup Pages
