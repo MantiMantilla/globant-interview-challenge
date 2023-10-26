@@ -9,6 +9,7 @@ on:
     branches: [main]
     paths:
       - docs/**
+      - .github/workflows/build_docs.yml
 
   # Allows running this workflow manually from the Actions tab
   workflow_dispatch:
