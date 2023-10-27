@@ -3,7 +3,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 title: Globant Data Engineering Challenge
 author: Alejo Mantilla
-logo: logo.png
+logo: assets/logo.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
