@@ -1,11 +1,6 @@
-# Welcome to your Jupyter Book
+# Globant Interview Challenge
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
-
-Check out the content pages bundled with this sample book to see more.
+This documentation site serves as a reference to the implementation details of my take on Globant's code challenge for a Data Engineering job. Particularly, we outline the cloud architecture of implemented and intended or pending services, the inner workings of these APIs and services, and a developer's guide to deployment and documenting.
 
 ```{tableofcontents}
 ```
