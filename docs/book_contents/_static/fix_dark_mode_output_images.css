@@ -1,0 +1,12 @@
+html[data-theme="dark"] .bd-content img:not(.only-dark):not(.dark-light) {
+  background: transparent;
+}
+
+html[data-theme="dark"] .bd-content div.cell_output .text_html,
+html[data-theme="dark"] .bd-content div.cell_output img {
+  background-color: transparent;
+}
+
+html[data-theme="dark"] img:not(.only-dark):not(.dark-light) {
+  filter: brightness(1) contrast(1);
+}
