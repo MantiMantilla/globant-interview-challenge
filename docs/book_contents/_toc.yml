@@ -4,6 +4,9 @@
 format: jb-book
 root: intro
 parts:
+  - caption: Instructions
+    chapters:
+      - file: instructions/instructions
   - caption: Architecture
     chapters:
       - file: architecture/architecture
