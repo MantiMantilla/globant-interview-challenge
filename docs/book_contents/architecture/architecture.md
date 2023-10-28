@@ -86,7 +86,7 @@ with Diagram("Microservice Queue Architecture", show=False) as arch:
     with Cluster("K8s Cluster"):
         ing = Nginx("Ingress")
         with Cluster("Gateway") as gateway:
-            gtwy_svc = Service("Gateway Service")
+            gtwy_svc = Service("GW Service")
             gtwy_workers = [Pod("Worker") for _ in range(0, 1)]
             ing - gtwy_svc - gtwy_workers
 
@@ -96,7 +96,7 @@ with Diagram("Microservice Queue Architecture", show=False) as arch:
             gtwy_workers - auth_svc - auth_workers
 
         with Cluster("DBUploader") as dbupldr:
-            upld_svc = Service("DBUpld Service")
+            upld_svc = Service("DBU Service")
             upld_workers = [Pod("Worker") for _ in range(0, 1)]
             upld_svc - upld_workers
 
@@ -133,4 +133,8 @@ with Diagram("Microservice Queue Architecture", show=False) as arch:
     query_workers - emply_DB
 
 arch
+```
+
+```{code-cell} ipython3
+
 ```
