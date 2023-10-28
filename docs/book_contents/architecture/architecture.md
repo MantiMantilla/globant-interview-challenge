@@ -40,8 +40,9 @@ from diagrams.aws.database import RDSMysqlInstance
 from diagrams.aws.engagement import SimpleEmailServiceSesEmail
 from diagrams.custom import Custom
 from diagrams.k8s.compute import Pod, StatefulSet
-from diagrams.k8s.network import Ingress, Service
+from diagrams.k8s.network import Service
 from diagrams.k8s.storage import PV, PVC, StorageClass
+from diagrams.onprem.network import Nginx
 ```
 
 ```{code-cell} ipython3
@@ -55,16 +56,23 @@ Cluster = partial(Cluster, graph_attr={"fontcolor": "#48566b"})
 Diagram = partial(
     Diagram, graph_attr={"fontcolor": "#48566b", "bgcolor": "transparent"}
 )
-Ingress = partial(Ingress, fontcolor="#48566b")
-Service = partial(Service, fontcolor="#48566b")
+
+RDSMysqlInstance = partial(RDSMysqlInstance, fontcolor="#48566b")
+
+SimpleEmailServiceSesEmail = partial(SimpleEmailServiceSesEmail, fontcolor="#48566b")
+
+Custom = partial(Custom, fontcolor="#48566b")
+
 Pod = partial(Pod, fontcolor="#48566b")
 StatefulSet = partial(StatefulSet, fontcolor="#48566b")
-RDSMysqlInstance = partial(RDSMysqlInstance, fontcolor="#48566b")
+
+Service = partial(Service, fontcolor="#48566b")
+
 PV = partial(PV, fontcolor="#48566b")
 PVC = partial(PVC, fontcolor="#48566b")
 StorageClass = partial(StorageClass, fontcolor="#48566b")
-Custom = partial(Custom, fontcolor="#48566b")
-SimpleEmailServiceSesEmail = partial(SimpleEmailServiceSesEmail, fontcolor="#48566b")
+
+Nginx = partial(Nginx, fontcolor="#48566b")
 ```
 
 ```{code-cell} ipython3
@@ -76,7 +84,7 @@ tags: [remove-input]
 ---
 with Diagram("Microservice Queue Architecture", show=False) as arch:
     with Cluster("K8s Cluster"):
-        ing = Ingress("Ingress")
+        ing = Nginx("Ingress")
         with Cluster("Gateway") as gateway:
             gtwy_svc = Service("Gateway Service")
             gtwy_workers = [Pod("Worker") for _ in range(0, 1)]
