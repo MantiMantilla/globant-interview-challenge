@@ -54,7 +54,7 @@ In the context of a DB migration with 3 different tables (departments, jobs, emp
 
 +++
 
-You need to publish your code in GitHub. It will be taken into account if frequent updates are made to the repository that allow analyzing the development process. Ideally, create a markdown file for the Readme.md
+You need to publish your code in GitHub. It will be taken into account if frequent updates are made to the repository that allow analyzing the development process. Ideally, create a markdown file for the README.md
 
 +++
 
