@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# MongoDB
+_mongodb/
+
+# MySQL DB
+_mysqldb/
+
 # C extensions
 *.so
 
