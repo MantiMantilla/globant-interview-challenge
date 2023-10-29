@@ -108,12 +108,13 @@ with Diagram("Microservice Queue Architecture", show=False) as arch:
         with Cluster("Queries") as queries:
             query_svc = Service("Query Service")
             query_workers = [Pod("Worker") for _ in range(0, 1)]
-            gtwy_workers - query_svc - query_workers
+            query_svc - query_workers
 
         queue_svc = Service("Queue Service")
         queue = Custom("Messae queue", "./assets/rabbitmq.png")
         gtwy_workers - queue_svc - queue
         queue - noti_workers
+        queue - query_workers
 
         sts = StatefulSet("Stateful Set")
         pvc = PVC("PV Claim")
@@ -126,13 +127,77 @@ with Diagram("Microservice Queue Architecture", show=False) as arch:
     emply_DB = RDSMysqlInstance("Employment")
     RDSMysqlInstance("Users") - auth_workers
 
-    SimpleEmailServiceSesEmail("Email Server") - noti_workers
+    SimpleEmailServiceSesEmail("Email Service") - noti_workers
 
     queue - upld_workers - mongo_blob
     upld_workers - emply_DB
     query_workers - emply_DB
 
 arch
+```
+
+This diagram is built using the [Diagrams.py](https://diagrams.mingrammer.com/) package and might not be a true representation of the architecture of the deployed application. It was made with a reasonable amount of attention to detail. You can review the Python code that generated this diagram by viewing the Markdown source of this page.
+
++++
+
+Because this is a microservice architecture, every major component of the application is deployed with its own service and deployment Kubernetes resources. Regular traffic to the application URL gets routed to the `Ingress` resource and handled by the `gateway` service which exposes all of the application endpoints.
+
++++
+
+To read in greater detail how each of the services works internally, move on to [Services and APIs](https://mantimantilla.github.io/globant-interview-challenge/services/services.html).
+
++++
+
+## Application flow
+
++++
+
+### Authentication
+
++++
+
+Any interaction with the application begins with a login request that gets handled by the `gateway` service. This request's contents get forwarded to the `auth` service which, if the user submits the proper credentials, would generate and return a temporary JWT token with which the user can authenticate for all other requests. The `auth` service queries a user SQL database external to the cluster but within the security group with no external traffic allowed.
+
++++
+
+To perform all other tasks such as uploading a CSV file or querying the employee database, the user needs to have already authenticated and needs to include their JWT token with every request.
+
++++
+
+### CSV Upload
+
++++
+
+If the user sends a POST request to the CSV upload endpoint with a proper JWT token, the `gateway` service will then upload the CSV file to the MongoDB instance (or cluster) and send a message to the `queue` service, which loads it onto the RabbitMQ instance (upload queue). Within the Kubernetes cluster the `dbuploader` service is always running (not as a Flask web server) and consuming messages from the upload queue. The `dbuploader` service will download the CSV file from the MongoDB instance and process it. If this process fails by no fault of the user, the message does not get removed from the queue and will remaine until the operation is succesful. Once the CSV gets processed and submitted to the employee SQL database (also external to the cluster but within the security group), the `dbuploader` service submits a message to the RabbitMQ instance (notification queue).
+
+The CSV file remains in MongoDB.
+
++++
+
+### Notification system
+
++++
+
+A `notification` service is always running (not as a Flask web server) in the cluster which consumes messages from the notification queue. Same as with the `dbuploader` service, the message will not be removed from the queue until the `notification` service succesfully connects to the SMTP server (hosted outside the cluster) and sends an email with the result of the CSV upload operation.
+
++++
+
+### User queries
+
++++
+
+
+
+```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
+
+```
+
+```{code-cell} ipython3
+
 ```
 
 ```{code-cell} ipython3
