@@ -3,15 +3,22 @@ DROP DATABASE IF EXISTS auth;
 DROP DATABASE IF EXISTS employment;
 
 DROP USER IF EXISTS 'auth_user'@'%';
-
+DROP USER IF EXISTS 'auth_user'@'localhost';
+DROP USER IF EXISTS 'auth_user'@'host.minikube.internal';
+DROP USER IF EXISTS 'auth_user'@'0.0.0.0';
 
 CREATE USER 'auth_user'@'%' IDENTIFIED BY 'Admin123';
+CREATE USER 'auth_user'@'localhost' IDENTIFIED BY 'Admin123';
+CREATE USER 'auth_user'@'host.minikube.internal' IDENTIFIED BY 'Admin123';
+CREATE USER 'auth_user'@'0.0.0.0' IDENTIFIED BY 'Admin123';
 
 CREATE DATABASE auth;
+USE auth;
 
 GRANT ALL PRIVILEGES ON auth.* TO 'auth_user'@'%';
-
-USE auth;
+-- GRANT ALL PRIVILEGES ON auth.* TO 'auth_user'@'localhost';
+-- GRANT ALL PRIVILEGES ON auth.* TO 'auth_user'@'host.minikube.internal';
+-- GRANT ALL PRIVILEGES ON auth.* TO 'auth_user'@'0.0.0.0';
 
 CREATE TABLE user (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -24,6 +31,9 @@ INSERT INTO user (email, password) VALUES ('alejoman@email.com', 'Admin123');
 CREATE DATABASE employment;
 
 GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'%';
+GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'localhost';
+GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'host.minikube.internal';
+GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'0.0.0.0';
 
 USE employment;
 
