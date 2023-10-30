@@ -1,0 +1,2 @@
+# Prevent venv from being copied to image.
+venv/
