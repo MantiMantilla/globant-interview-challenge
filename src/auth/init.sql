@@ -31,9 +31,9 @@ INSERT INTO user (email, password) VALUES ('alejoman@email.com', 'Admin123');
 CREATE DATABASE employment;
 
 GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'%';
-GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'localhost';
-GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'host.minikube.internal';
-GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'0.0.0.0';
+-- GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'localhost';
+-- GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'host.minikube.internal';
+-- GRANT ALL PRIVILEGES ON employment.* TO 'auth_user'@'0.0.0.0';
 
 USE employment;
 
@@ -54,3 +54,21 @@ CREATE TABLE jobs (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     job VARCHAR(255) NOT NULL
 );
+
+LOAD DATA INFILE "../../data/hired_employees.csv"
+INTO TABLE hired_employees
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY ','
+IGNORE 0 ROWS;
+
+LOAD DATA INFILE "../../data/departments.csv"
+INTO TABLE departments
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY ','
+IGNORE 0 ROWS;
+
+LOAD DATA INFILE "../../data/jobs.csv"
+INTO TABLE jobs
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY ','
+IGNORE 0 ROWS;
